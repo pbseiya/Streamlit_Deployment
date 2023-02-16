@@ -12,7 +12,7 @@ if 'clf' not in st.session_state:
     with st.spinner('Training ...'):
         st.session_state['spark'] = SparkSession.builder.appName('test').getOrCreate()
 
-        df = st.session_state['spark'].read.csv('iris.csv', header=False, inferSchema=True)
+        df = st.session_state['spark'].read.csv('./pyspark_streamlit/iris.csv', header=True, inferSchema=True)
         df = df.toDF(*schema)
 
         st.session_state['feature_assembler'] = VectorAssembler(inputCols=schema[:-1],
